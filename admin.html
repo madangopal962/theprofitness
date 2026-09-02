@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="logo.png" />
+    <title>Admin Panel | The Pro Fitness</title>
+    <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+    <div class="admin-shell">
+        <header class="admin-topbar">
+            <div class="brand-wrap">
+                <div class="admin-brand-mark"><img src="logo.png" alt="Logo" /></div>
+                <div>
+                    <p class="eyebrow">The Pro Fitness</p>
+                    <h1>Admin Panel</h1>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button type="button" class="theme-toggle" id="adminThemeToggle" aria-label="Toggle dashboard theme">
+                    <span class="toggle-thumb"></span>
+                </button>
+                <button type="button" class="ghost-button" id="resetDemoData">Reset demo</button>
+            </div>
+        </header>
+
+        <section class="stats-grid" aria-label="Membership overview">
+            <article class="stat-card accent">
+                <div class="stat-meta">
+                    <span>Total Members</span>
+                    <strong id="totalMembers">0</strong>
+                </div>
+                <span class="stat-trend positive">+12 this month</span>
+            </article>
+
+            <article class="stat-card success">
+                <div class="stat-meta">
+                    <span>Active</span>
+                    <strong id="activeMembers">0</strong>
+                </div>
+                <span class="stat-trend positive">Active Members</span>
+            </article>
+
+            <article class="stat-card warning">
+                <div class="stat-meta">
+                    <span>Expiring Soon</span>
+                    <strong id="expiringSoon">0</strong>
+                </div>
+                <span class="stat-trend neutral">Within 7 days</span>
+            </article>
+
+            <article class="stat-card info">
+                <div class="stat-meta">
+                    <span>Monthly Revenue</span>
+                    <strong id="monthlyRevenue">₹0</strong>
+                </div>
+                <span class="stat-trend positive">Updated Yesterday</span>
+            </article>
+        </section>
+
+        <section class="toolbar" aria-label="Member search and filters">
+            <div class="search-box">
+                <span class="search-icon">⌕</span>
+                <input id="memberSearch" type="search" placeholder="Search by name, id or phone" aria-label="Search members" />
+            </div>
+
+            <div class="filter-group">
+                <label>
+                    <span>Status</span>
+                    <select id="statusFilter">
+                        <option value="all">All statuses</option>
+                        <option value="active">Active</option>
+                        <option value="expiring">Expiring Soon</option>
+                        <option value="expired">Expired</option>
+                    </select>
+                </label>
+
+                <label>
+                    <span>Plan</span>
+                    <select id="planFilter">
+                        <option value="all">All plans</option>
+                        <option value="1 Month">1 Month</option>
+                        <option value="3 Months">3 Months</option>
+                        <option value="6 Months">6 Months</option>
+                        <option value="12 Months">12 Months</option>
+                    </select>
+                </label>
+            </div>
+        </section>
+
+        <main class="workspace-grid">
+            <section class="table-panel panel">
+                <div class="panel-header">
+                    <h2>Members</h2>
+                    <span class="table-count" id="tableCount">0 records</span>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Member ID</th>
+                                <th>Plan</th>
+                                <th>Expiry</th>
+                                <th>Status</th>
+                                <th>Contact</th>
+                                <th>Fee</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="memberTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <aside class="form-panel panel">
+                <div class="panel-header">
+                    <h2 id="formTitle">Add Member</h2>
+                </div>
+
+                <!-- Add Member Form -->
+                <form id="addMemberForm" class="member-form-container">
+                    <div class="form-grid">
+                        <label class="field">
+                            <span>Full name</span>
+                            <input name="name" type="text" placeholder="Enter full name" required />
+                        </label>
+
+                        <label class="field">
+                            <span>Phone number</span>
+                            <div class="field-with-prefix">
+                                <span class="prefix">+91</span>
+                                <input name="phone" type="tel" placeholder="00000 00000" maxlength="10" required />
+                            </div>
+                        </label>
+
+                        <label class="field">
+                            <span>Email</span>
+                            <input name="email" type="email" placeholder="Enter email address" required />
+                        </label>
+
+                        <label class="field">
+                            <span>Membership plan</span>
+                            <select name="plan" required>
+                                <option value="1 Month">1 Month</option>
+                                <option value="3 Months">3 Months</option>
+                                <option value="6 Months">6 Months</option>
+                                <option value="12 Months" selected>12 Months</option>
+                            </select>
+                        </label>
+
+                        <label class="field">
+                            <span>Status</span>
+                            <input type="text" value="Active" disabled />
+                            <input type="hidden" name="status" value="active" />
+                        </label>
+
+                        <label class="field">
+                            <span>Join date</span>
+                            <input name="joinDate" type="date" required />
+                        </label>
+
+                        <label class="field">
+                            <span>Membership fee</span>
+                            <input name="fee" type="number" min="0" step="100" placeholder="5000" required />
+                        </label>
+
+                        <label class="field">
+                            <span>Upload photo</span>
+                            <input name="photo" type="file" accept="image/*" />
+                        </label>
+
+                        <label class="field field-wide">
+                            <span>Notes</span>
+                            <textarea name="notes" rows="3" placeholder="Add notes or goal updates"></textarea>
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="primary-button">Add member</button>
+                        <button type="button" class="secondary-button" id="cancelAdd" hidden>Cancel</button>
+                    </div>
+                </form>
+
+                <!-- Edit Member Form -->
+                <form id="editMemberForm" class="member-form-container" hidden>
+                    <div class="form-grid">
+                        <label class="field">
+                            <span>Full name</span>
+                            <input name="name" type="text" placeholder="Enter full name" required />
+                        </label>
+
+                        <label class="field">
+                            <span>Phone number</span>
+                            <div class="field-with-prefix">
+                                <span class="prefix">+91</span>
+                                <input name="phone" type="tel" placeholder="00000 00000" maxlength="10" required />
+                            </div>
+                        </label>
+
+                        <label class="field">
+                            <span>Email</span>
+                            <input name="email" type="email" placeholder="Enter email address" required />
+                        </label>
+
+                        <label class="field">
+                            <span>Membership plan</span>
+                            <select id="editPlanField" name="plan" required disabled>
+                                <option value="1 Month">1 Month</option>
+                                <option value="3 Months">3 Months</option>
+                                <option value="6 Months">6 Months</option>
+                                <option value="12 Months">12 Months</option>
+                            </select>
+                        </label>
+
+                        <label class="field">
+                            <span>Status</span>
+                            <select id="editStatusField" name="status" required>
+                                <option value="active">Active</option>
+                                <option value="expiring">Expiring</option>
+                                <option value="expired">Expired</option>
+                            </select>
+                        </label>
+
+                        <label class="field">
+                            <span>Join date</span>
+                            <input id="editJoinDateField" name="joinDate" type="date" required disabled />
+                        </label>
+
+                        <label class="field">
+                            <span>Membership fee</span>
+                            <input name="fee" type="number" min="0" step="100" placeholder="5000" required />
+                        </label>
+
+                        <label class="field">
+                            <span>Upload photo</span>
+                            <input name="photo" type="file" accept="image/*" />
+                        </label>
+
+                        <label class="field field-wide">
+                            <span>Notes</span>
+                            <textarea name="notes" rows="3" placeholder="Add notes or goal updates"></textarea>
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="primary-button" id="editSubmitButton">Save changes</button>
+                        <button type="button" class="secondary-button" id="cancelEdit">Cancel</button>
+                    </div>
+                </form>
+
+                <!-- Recharge Member Form -->
+                <form id="rechargeMemberForm" class="member-form-container" hidden>
+                    <div class="form-grid">
+                        <label class="field">
+                            <span>Member ID</span>
+                            <input id="rechargeMemberId" type="text" readonly />
+                        </label>
+
+                        <label class="field">
+                            <span>Member Name</span>
+                            <input id="rechargeMemberName" type="text" readonly />
+                        </label>
+
+                        <label class="field">
+                            <span>Current Status</span>
+                            <input id="rechargeMemberStatus" type="text" readonly />
+                        </label>
+
+                        <label class="field">
+                            <span>Current Expiry Date</span>
+                            <input id="rechargeCurrentExpiry" type="text" readonly />
+                        </label>
+
+                        <label class="field">
+                            <span>Add Months</span>
+                            <select id="rechargeMonths" name="months" required>
+                                <option value="">Select months</option>
+                                <option value="1">1 Month</option>
+                                <option value="3">3 Months</option>
+                                <option value="6">6 Months</option>
+                                <option value="12">12 Months</option>
+                            </select>
+                        </label>
+
+                        <label class="field">
+                            <span>Fees</span>
+                            <input id="rechargeAdditionalFee" name="additionalFee" type="number" min="0" step="100" required />
+                        </label>
+
+                        <label class="field">
+                            <span>New Expiry Date</span>
+                            <input id="rechargeNewExpiry" type="text" readonly />
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="primary-button" id="rechargeSubmitButton">Process Recharge</button>
+                        <button type="button" class="secondary-button" id="cancelRecharge">Cancel</button>
+                    </div>
+                </form>
+            </aside>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

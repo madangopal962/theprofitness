@@ -1,0 +1,449 @@
+:root {
+    --bg-1: #f5f7fb;
+    --bg-2: #eaf0f7;
+    --panel: rgba(255, 255, 255, 0.58);
+    --panel-solid: rgba(255, 255, 255, 0.78);
+    --primary: #f9a33b;
+    --primary-deep: #e88b17;
+    --accent: #2ec27e;
+    --text: #111827;
+    --muted: #667085;
+    --line: rgba(148, 163, 184, 0.26);
+    --shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+    --soft-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    --topbar-bg: rgba(255, 255, 255, 0.4);
+    --chip-bg: rgba(255, 255, 255, 0.52);
+    --summary-bg: rgba(255, 255, 255, 0.46);
+    --summary-border: rgba(255, 255, 255, 0.5);
+}
+
+body.theme-dark {
+    --bg-1: #000000;
+    --bg-2: #111111;
+    --panel: rgba(12, 18, 24, 0.64);
+    --panel-solid: rgba(17, 24, 31, 0.78);
+    --primary: #f9a33b;
+    --primary-deep: #e88b17;
+    --accent: #2ec27e;
+    --text: #ffffff;
+    --muted: #ffffff;
+    --line: rgba(255, 255, 255, 0.08);
+    --shadow: 0 18px 40px rgba(2, 8, 12, 0.46);
+    --soft-shadow: 0 12px 30px rgba(2, 8, 12, 0.32);
+    --topbar-bg: rgba(19, 19, 19, 0.7);
+    --chip-bg: rgba(255, 255, 255, 0.08);
+    --summary-bg: rgba(21, 21, 21, 0.7);
+    --summary-border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "SF Pro Display", "SF Pro Text", "Apple Color Emoji", "Segoe UI", sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 30%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    color: var(--text);
+    letter-spacing: -0.02em;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.page-shell {
+    width: min(430px, calc(100% - 20px));
+    margin: 26px auto 40px;
+    padding: 14px 0 0;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    background: var(--topbar-bg);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 28px;
+    padding: 18px 20px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: var(--soft-shadow);
+}
+
+.brand-block {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.brand-mark img{
+    width: 60px;
+    height: 60px;
+    border-radius: 25%;
+}
+
+h1, h2, h3, h4, p {
+    margin: 0;
+}
+
+h1 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+}
+
+.eyebrow,
+.label {
+    margin: 0;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.date-panel {
+    margin: 18px 0 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.date-panel strong {
+    background: var(--chip-bg);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    color: var(--text);
+    box-shadow: var(--soft-shadow);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.theme-toggle {
+    position: relative;
+    width: 52px;
+    height: 30px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #dfe7f2, #bcc7d6);
+    box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.18), 0 8px 18px rgba(15, 23, 42, 0.08);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.45s ease, transform 0.3s ease;
+}
+
+.theme-toggle.is-dark {
+    background: linear-gradient(135deg, #2a3a4e, #1a2435);
+}
+
+.toggle-thumb {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #333333;
+    box-shadow: 0 4px 8px rgba(15, 23, 42, 0.15);
+    transition: transform 0.45s ease, box-shadow 0.45s ease, background 0.45s ease;
+}
+
+.theme-toggle.is-dark .toggle-thumb {
+    transform: translateX(22px);
+    background: #dfe7f2;
+}
+
+.member-panel {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.profile-card,
+.member-summary {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.profile-card {
+    padding: 0;
+}
+
+.no-box {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.credit-card {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(135deg, rgba(9, 13, 17, 0.68), rgba(17, 24, 31, 0.52)),
+        url('Card-background.png') center/cover no-repeat;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 32px;
+    padding: 22px 20px 18px;
+    min-height: 260px;
+    box-shadow: 0 24px 50px rgba(17, 24, 39, 0.25);
+}
+
+.credit-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent 28%, transparent 70%, rgba(255,255,255,0.08));
+    pointer-events: none;
+}
+
+.card-header-row,
+.card-info-row {
+    position: relative;
+    z-index: 1;
+}
+
+.card-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.card-status {
+    background: rgba(46, 194, 126, 0.18);
+    color: #dffef0;
+    border: 1px solid rgba(223, 254, 240, 0.22);
+    border-radius: 999px;
+    padding: 7px 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.card-photo-id-row {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 14px 0 18px;
+    width: 100%;
+    text-align: center;
+    padding-left: 0;
+}
+
+.card-photo-box {
+    position: relative;
+    z-index: 1;
+    width: 103.4px;
+    height: 103.4px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.28);
+    box-shadow: 0 18px 26px rgba(5, 10, 14, 0.2);
+    flex-shrink: 0;
+    display: block;
+    margin-right: 20px;
+}
+
+.card-photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-info-row {
+    display: flex;
+    width: 60%;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex: 1;
+    text-align: center;
+    margin: 0;
+    margin-left: 12px;
+}
+
+.member-id-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-label {
+    margin: 0;
+    font-size: 0.64rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.76);
+}
+
+.credit-card h2 {
+    margin-top: 6px;
+    font-size: clamp(2.2rem, 2.8vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    color: #fdfdfd;
+}
+
+.card-name-block {
+    position: relative;
+    z-index: 1;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    text-align: center;
+}
+
+.card-name-block h3 {
+    margin-top: 6px;
+    font-size: clamp(1.8rem, 2vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+}
+
+.member-summary {
+    padding: 8px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.summary-box {
+    background: var(--summary-bg);
+    border: 1px solid var(--summary-border);
+    border-radius: 22px;
+    padding: 14px 16px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: var(--soft-shadow);
+    transition: box-shadow 0.2s ease;
+}
+
+.summary-box:hover {
+    box-shadow: none;
+}
+
+.summary-box h4 {
+    margin-top: 8px;
+    font-size: 1.06rem;
+    line-height: 1.4;
+    font-weight: 600;
+    color: #111827;
+}
+
+.recharge-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.recharge-duration {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(249, 163, 59, 0.14);
+    border: 1px solid rgba(249, 163, 59, 0.2);
+    color: #111827;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+body.theme-dark .summary-box h4,
+body.theme-dark .summary-box .label,
+body.theme-dark .recharge-duration {
+    color: #d1d5db;
+}
+
+.summary-box.highlighted {
+    background: linear-gradient(135deg, rgba(249, 163, 59, 0.16), rgba(255, 255, 255, 0.6));
+    border-color: rgba(249, 163, 59, 0.25);
+}
+
+.brand-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    margin-top: 14px;
+    width: 100%;
+    color: var(--text);
+    font-size: 350%;
+    font-weight: 900;
+    letter-spacing: 0.21em;
+    line-height: 0.88;
+    text-transform: uppercase;
+    opacity: 0.15;
+    text-align: center;
+    white-space: nowrap;
+}
+.brand-credit {
+    margin-top: 35px;
+    text-align: center;
+    color: #4b5563;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+body.theme-dark .brand-credit {
+    color: #d1d5db;
+}
+@media (max-width: 420px) {
+    .page-shell {
+        width: min(100% - 16px, 390px);
+        margin-top: 18px;
+    }
+
+    .topbar {
+        padding: 16px 18px;
+        border-radius: 22px;
+    }
+
+    .brand-mark {
+        width: 40px;
+        height: 40px;
+    }
+
+    .brand-mark img {
+        width: 40px;
+        height: 40px;
+    }
+
+    h1 {
+        font-size: 1.08rem;
+    }
+
+    .credit-card {
+        min-height: 240px;
+        border-radius: 28px;
+    }
+}
+
