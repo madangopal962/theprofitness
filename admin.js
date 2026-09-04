@@ -404,7 +404,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function calculateRechargeExpiry(currentExpiryDate, monthsToAdd) {
         if (!currentExpiryDate || !monthsToAdd) return '';
-        const date = new Date(`${currentExpiryDate}T00:00:00`);
+        const today = new Date();
+        const currentExpiry = new Date(`${currentExpiryDate}T00:00:00`);
+        const date = currentExpiry > today
+            ? currentExpiry
+            : new Date(today.getFullYear(), today.getMonth(), today.getDate());
         date.setMonth(date.getMonth() + parseInt(monthsToAdd));
         return formatDate(date.toISOString().split('T')[0]);
     }
@@ -425,22 +429,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const member = members.find((m) => m.id === rechargingId);
         if (!member) return;
 
-        // For expiring or expired members, calculate expiry from today (recharge date)
-        // For active members, calculate from current expiry date
-        let baseDate;
-        const today = new Date();
-        const currentExpiry = new Date(`${member.expiryDate}T00:00:00`);
-        
-        if (member.status === 'active' && currentExpiry > today) {
-            // Active member with future expiry - extend from current expiry
-            baseDate = new Date(`${member.expiryDate}T00:00:00`);
-        } else {
-            // Expiring or expired member - calculate from today
-            baseDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-        }
-        
-        baseDate.setMonth(baseDate.getMonth() + parseInt(months));
-        const newExpiryDate = baseDate.toISOString().split('T')[0];
+        const formattedExpiryDate = calculateRechargeExpiry(member.expiryDate, months);
+        const newExpiryDate = formattedExpiryDate
+            ? new Date(formattedExpiryDate).toISOString().split('T')[0]
+            : '';
 
         // Update member - sync as active member after recharge
         member.expiryDate = newExpiryDate;
@@ -497,11 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
         applyTheme(nextDark);
     });
     resetDemoData.addEventListener('click', () => {
-        members = JSON.parse(JSON.stringify(DEFAULT_DATA));
-        renderStats();
-        renderTable();
-        resetForm();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.location.reload();
     });
 
     cancelEdit.hidden = true;
