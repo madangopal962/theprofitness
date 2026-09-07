@@ -1,27 +1,65 @@
-const todayDate = document.getElementById('todayDate');
-const themeToggle = document.querySelector('.theme-toggle');
+const menuToggle = document.querySelector(".menu-toggle");
+const siteNav = document.querySelector(".site-nav");
+const revealItems = document.querySelectorAll(".reveal");
+const counters = document.querySelectorAll(".counter");
 
-function formatDate(date) {
-    const day = date.getDate();
-    const month = date.toLocaleString('en-US', { month: 'short' });
-    const year = String(date.getFullYear()).slice(-2);
-    const weekday = date.toLocaleDateString('en-US', { weekday: 'long' });
-    return `${day} ${month} ${year}, ${weekday}`;
+if (menuToggle && siteNav) {
+    menuToggle.addEventListener("click", () => {
+        const isOpen = siteNav.classList.toggle("is-open");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    siteNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+            siteNav.classList.remove("is-open");
+            menuToggle.setAttribute("aria-expanded", "false");
+        });
+    });
 }
 
-const now = new Date();
-todayDate.textContent = formatDate(now);
+const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+            return;
+        }
 
-function applyTheme(isDark) {
-    document.body.classList.toggle('theme-dark', isDark);
-    themeToggle.classList.toggle('is-dark', isDark);
-    themeToggle.setAttribute('aria-pressed', String(isDark));
-}
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+    });
+}, { threshold: 0.18 });
 
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-applyTheme(false);
+revealItems.forEach((item) => revealObserver.observe(item));
 
-themeToggle.addEventListener('click', () => {
-    const isDark = !document.body.classList.contains('theme-dark');
-    applyTheme(isDark);
-});
+const animateCounter = (counter) => {
+    const target = Number(counter.dataset.target || 0);
+    const duration = 1400;
+    const startTime = performance.now();
+
+    const updateValue = (currentTime) => {
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        counter.textContent = Math.floor(target * eased).toLocaleString("en-IN");
+
+        if (progress < 1) {
+            requestAnimationFrame(updateValue);
+            return;
+        }
+
+        counter.textContent = target.toLocaleString("en-IN");
+    };
+
+    requestAnimationFrame(updateValue);
+};
+
+const counterObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+            return;
+        }
+
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+    });
+}, { threshold: 0.7 });
+
+counters.forEach((counter) => counterObserver.observe(counter));

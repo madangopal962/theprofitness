@@ -1,96 +1,331 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="logo.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <title>The Pro Fitness</title>
-    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <div class="page-shell">
-        <header class="topbar">
-            <div class="brand-block">
-                <div class="brand-mark"><img src="logo.png" alt="Logo" /></div>
-                <div>
-                    <h1>The Pro Fitness</h1>
-                </div>
-            </div>
-
-            <div class="header-actions">
-                <button class="theme-toggle" type="button" aria-label="Toggle theme">
-                    <span class="toggle-thumb"></span>
-                </button>
-            </div>
-        </header>
-
-        <div class="date-panel">
-            <strong id="todayDate">--</strong>
+    <header class="site-header">
+        <div class="container nav">
+            <a href="#home" class="brand">
+                <img src="/images/logo.png" alt="The Pro Fitness logo" class="brand-mark">
+                <span class="brand-lockup">
+                    <span class="brand-text">The Pro Fitness</span>
+                    <span class="brand-tagline">Elevate Your Fitness</span>
+                </span>
+            </a>
+            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="site-nav">
+                <a href="#services">Services</a>
+                <a href="#plans">Plans</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="apps/member_login.html">Login</a>
+            </nav>
         </div>
+    </header>
 
-        <main class="member-panel">
-            <section class="profile-card no-box">
-                <div class="credit-card">
-                    <div class="card-header-row">
-                        <div class="card-status">Active</div>
-                        <div></div>
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+                <div class="hero-copy reveal">
+                    <p class="eyebrow">Gorakhpur's Unisex Fitness Center</p>
+                    <h1>The Pro Fitness</h1>
+                    <p class="hero-tagline">Elevate Your Fitness</p>
+                    <p class="hero-text">
+                        Modern equipment, focused coaching, and practical training programs for strength,
+                        cardio, body building, dance fitness, and everyday transformation.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="tel:+918957043387" class="btn btn-primary">Call 89570 43387</a>
+                        <a href="#services" class="btn btn-secondary">View Services</a>
                     </div>
-                    <div class="card-photo-id-row">
-                        <div class="card-info-row">
-                            <div class="member-id-stack">
-                                <p class="card-label">Member id</p>
-                                <h2>PRO10028</h2>
-                            </div>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <strong class="counter" data-target="9">0</strong>
+                            <span>Core Training Services</span>
                         </div>
-                        <div class="card-photo-box">
-                            <img src="member.jpg" alt="Member photo" />
+                        <div class="stat-card">
+                            <strong class="counter" data-target="6">0</strong>
+                            <span>Days open per week</span>
+                        </div>
+                        <div class="stat-card">
+                            <strong>Unisex</strong>
+                            <span>Fitness Center</span>
                         </div>
                     </div>
-                    <div class="card-name-block">
-                        <h3>Madan Gopal</h3>
+                </div>
+
+                <div class="hero-visual reveal">
+                    <div class="hero-panel">
+                        <div class="panel-badge">Signature Programs</div>
+                        <h2>Professional training inspired by the gym's original brand card.</h2>
+                        <ul class="feature-list">
+                            <li>Modern equipment with heavy weight training support</li>
+                            <li>Personal training, yoga fitness, zumba, dance, and cardio</li>
+                            <li>CrossFit and body building plans for beginner to advanced members</li>
+                        </ul>
+                        <div class="hero-contact-strip">
+                            <span class="social-handle">
+                                <span class="social-icons">
+                                    <a class="social-link" href="https://example.com/instagram"
+                                        aria-label="Instagram profile">
+                                        <svg class="social-icon" viewBox="0 0 24 24" fill="none">
+                                            <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor"
+                                                stroke-width="1.8"></rect>
+                                            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8">
+                                            </circle>
+                                            <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"></circle>
+                                        </svg>
+                                    </a>
+                                    <a class="social-link" href="https://example.com/x" aria-label="X profile">
+                                        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                d="M17.2 4H20l-6.1 7 7.1 9h-5.6L11 14.4 6.1 20H3.3l6.6-7.5L3 4h5.7l4 5.1L17.2 4Z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                    <a class="social-link" href="https://example.com/facebook"
+                                        aria-label="Facebook profile">
+                                        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                d="M13.5 21v-7.7H16l.4-3h-2.9V8.4c0-.9.2-1.5 1.5-1.5h1.6V4.2c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H8v3h2.4V21h3.1Z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                    <a class="social-link" href="https://example.com/telegram"
+                                        aria-label="Telegram profile">
+                                        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                d="M21 5.6 17.8 20c-.2 1-.8 1.2-1.6.8l-4.4-3.2-2.1 2c-.2.2-.4.4-.8.4l.3-4.5 8.3-7.5c.4-.3-.1-.5-.5-.3l-10.2 6.5-4.4-1.4c-1-.3-1-.9.2-1.4L19.2 5c.8-.3 2 .2 1.8.6Z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </span>
+                                <span>@vmthe_gym</span>
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <aside class="member-summary no-box">
-                <div class="summary-box">
-                    <p class="label">Date of joining</p>
-                    <h4>12 Jan 2024</h4>
+        <section class="section services" id="services">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <p class="eyebrow">Our Services</p>
+                    <h2>Services offered at The Pro Fitness.</h2>
                 </div>
-
-                <div class="summary-box">
-                    <p class="label">Address</p>
-                    <h4>CN0096 Jangle Ramgarh Urf Chawri Khorabar, Gorakhpur</h4>
+                <div class="card-grid">
+                    <article class="service-card reveal">
+                        <h3>Modern Equipment</h3>
+                        <p>Train with essential gym machines and equipment designed for daily performance and progress.
+                        </p>
+                    </article>
+                    <article class="service-card reveal">
+                        <h3>Body Building</h3>
+                        <p>Focused muscle-building programs with guided exercise selection and disciplined progression.
+                        </p>
+                    </article>
+                    <article class="service-card reveal">
+                        <h3>Heavy Weight Training</h3>
+                        <p>Strength-centered sessions for lifters who want serious resistance training and measurable
+                            gains.</p>
+                    </article>
+                    <article class="service-card reveal">
+                        <h3>Personal Training</h3>
+                        <p>One-to-one guidance tailored around technique, confidence, consistency, and specific fitness
+                            goals.</p>
+                    </article>
+                    <article class="service-card reveal">
+                        <h3>Yoga Fitness</h3>
+                        <p>Improve flexibility, recovery, mobility, and body awareness through structured yoga sessions.
+                        </p>
+                    </article>
+                    <article class="service-card reveal">
+                        <h3>Zumba</h3>
+                        <p>High-energy dance fitness classes that keep cardio engaging, social, and easy to stay
+                            consistent with.</p>
+                    </article>
+                    <article class="service-card reveal">
+                        <h3>Hip Hop Dance</h3>
+                        <p>Learn energetic hip hop dance moves in fun group sessions that build rhythm, confidence, and
+                            stamina.</p>
+                    </article>
+                    <article class="service-card reveal">
+                        <h3>CrossFit</h3>
+                        <p>Functional training routines that blend strength, conditioning, endurance, and athletic
+                            movement.</p>
+                    </article>
+                    <article class="service-card reveal">
+                        <h3>Cardio</h3>
+                        <p>Dedicated cardio options for weight loss, endurance building, stamina, and heart health.</p>
+                    </article>
                 </div>
+            </div>
+        </section>
 
-                <div class="summary-box">
-                    <p class="label">Contact Number</p>
-                    <h4>+91 73981 60132</h4>
+        <section class="section plans" id="plans">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <p class="eyebrow">Subscription Plans</p>
+                    <h2>Choose a plan and start training with consistency.</h2>
                 </div>
+                <div class="plan-grid">
+                    <article class="plan-card reveal">
+                        <span class="plan-label">Starter</span>
+                        <h3>Monthly Plan</h3>
+                        <p class="price">Rs. 700<span>/month</span></p>
+                        <ul>
+                            <li>Unlimited gym access</li>
+                            <li>1 fitness assessment</li>
+                            <li>Locker support</li>
+                            <li>Standard workout guidance</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-secondary">Join Now</a>
+                    </article>
 
-                <div class="summary-box">
-                    <p class="label">Last Recharge</p>
-                    <div class="recharge-meta">
-                        <h4>22 Aug 2026</h4>
-                        <span class="recharge-duration">3 Months</span>
+                    <article class="plan-card featured reveal">
+                        <span class="plan-label">Most Popular</span>
+                        <h3>Quarterly Plan</h3>
+                        <p class="price">Rs. 1,800<span>/3 months</span></p>
+                        <ul>
+                            <li>Unlimited gym access</li>
+                            <li>2 personal training sessions</li>
+                            <li>Zumba or yoga class access</li>
+                            <li>Progress review support</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary">Start Quarterly</a>
+                    </article>
+
+                    <article class="plan-card reveal">
+                        <span class="plan-label">Value Plan</span>
+                        <h3>Half Yearly Plan</h3>
+                        <p class="price">Rs. 3,500<span>/6 months</span></p>
+                        <ul>
+                            <li>Unlimited gym access</li>
+                            <li>4 personal training sessions</li>
+                            <li>Zumba and yoga class access</li>
+                            <li>Progress tracking support</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-secondary">Choose Half Yearly</a>
+                    </article>
+
+                    <article class="plan-card reveal">
+                        <span class="plan-label">Premium</span>
+                        <h3>Annual Plan</h3>
+                        <p class="price">Rs. 6,000<span>/year</span></p>
+                        <ul>
+                            <li>Full gym and class access</li>
+                            <li>Monthly trainer review</li>
+                            <li>Personal training support</li>
+                            <li>Transformation roadmap</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-secondary">Go Annual</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section about" id="about">
+            <div class="container about-grid">
+                <div class="about-copy reveal">
+                    <p class="eyebrow">About The Pro Fitness</p>
+                    <h2>Built for members who want a clean, focused, and motivating place to train.</h2>
+                    <p>
+                        The Pro Fitness brings together gym training, yoga, zumba, dance, cardio, and personal coaching
+                        in one unisex fitness center. The website styling now follows the same maroon, white, and black
+                        brand language shown on your business card so the online presence matches the printed identity.
+                    </p>
+                </div>
+                <div class="about-card reveal">
+                    <div class="mini-metric">
+                        <strong>Address</strong>
+                        <span>Swastik House, Opp. Himcity Part-1 Gate, Dewa Road Chinhat, Lucknow - 226028</span>
+                    </div>
+                    <div class="mini-metric">
+                        <strong>Website</strong>
+                        <span>www.theprofitness.in</span>
+                    </div>
+                    <div class="mini-metric">
+                        <strong>Social</strong>
+                        <span class="social-handle">
+                            <span class="social-icons">
+                                <a class="social-link" href="https://example.com/instagram"
+                                    aria-label="Instagram profile">
+                                    <svg class="social-icon" viewBox="0 0 24 24" fill="none">
+                                        <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor"
+                                            stroke-width="1.8"></rect>
+                                        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"></circle>
+                                        <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"></circle>
+                                    </svg>
+                                </a>
+                                <a class="social-link" href="https://example.com/x" aria-label="X profile">
+                                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M17.2 4H20l-6.1 7 7.1 9h-5.6L11 14.4 6.1 20H3.3l6.6-7.5L3 4h5.7l4 5.1L17.2 4Z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a class="social-link" href="https://example.com/facebook"
+                                    aria-label="Facebook profile">
+                                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M13.5 21v-7.7H16l.4-3h-2.9V8.4c0-.9.2-1.5 1.5-1.5h1.6V4.2c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H8v3h2.4V21h3.1Z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a class="social-link" href="https://example.com/telegram"
+                                    aria-label="Telegram profile">
+                                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M21 5.6 17.8 20c-.2 1-.8 1.2-1.6.8l-4.4-3.2-2.1 2c-.2.2-.4.4-.8.4l.3-4.5 8.3-7.5c.4-.3-.1-.5-.5-.3l-10.2 6.5-4.4-1.4c-1-.3-1-.9.2-1.4L19.2 5c.8-.3 2 .2 1.8.6Z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </span>
+                            <span>@vmthe_gym</span>
+                        </span>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="summary-box highlighted">
-                    <p class="label">Membership expiry</p>
-                    <h4>12 Jan 2026</h4>
+        <section class="cta" id="contact">
+            <div class="container cta-box reveal">
+                <div class="contact-copy">
+                    <p class="eyebrow">Contact The Pro Fitness</p>
+                    <h2>Visit, call, or message to start your fitness journey.</h2>
+                    <p>Swastik House, Opp. Himcity Part-1 Gate, Dewa Road Chinhat, Lucknow - 226028</p>
                 </div>
-
-                <div class="brand-footer" aria-label="The Pro Fitness brand footer">
-                    <span>THE PRO</span>
-                    <span>FITNESS</span>
+                <div class="contact-actions">
+                    <a href="tel:+918957043387" class="btn btn-primary">Call 89570 43387</a>
+                    <a href="https://wa.me/918957043387?text=Hello%20The%20Pro%20Fitness%2C%20I%20want%20to%20book%20a%20session."
+                        class="btn btn-secondary">Book Session</a>
                 </div>
-                <div class="brand-credit">Developed in Gopal's Lab</div>
-            </aside>
-        </main>
+            </div>
+        </section>
+    </main>
+    <div class="brand-footer" aria-label="The Pro Fitness brand footer">
+        <span>THE PRO</span>
+        <span>FITNESS</span>
     </div>
-
+    <div class="brand-credit">Developed in Gopal's Lab</div>
     <script src="script.js"></script>
 </body>
+
 </html>
